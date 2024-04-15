@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.title {
+  font-size: 130px;
+  font-weight: 200;
+  color: var(--primery-pink);
+}
