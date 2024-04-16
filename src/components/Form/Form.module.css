@@ -7,6 +7,7 @@
   background-color: var(--primary-white);
 
   box-shadow: 0px 4px 4px 0px #0000000d;
+  padding-right: 10px;
 }
 
 .input {
@@ -19,12 +20,9 @@
   padding-left: 40px;
 
   font-size: 25px;
+  font-family: 'Jost';
   font-style: italic;
-  font-weight: 100;
+  font-weight: 300;
   color: var(--primery-black);
   outline-color: var(--primery-gray);
-}
-
-.iconButton {
-  padding-right: 5px;
 }
