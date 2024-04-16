@@ -1,7 +1,8 @@
 import { FC, HTMLAttributes, useState } from 'react'
 
+import { IconButton } from 'components/IconButton/IconButton'
+
 import styles from './Form.module.css'
-import { Button } from 'components/Button/Button'
 
 interface IForm extends HTMLAttributes<HTMLFormElement> {}
 
@@ -18,7 +19,11 @@ export const Form: FC<IForm> = () => {
           setInputValue(e.currentTarget.value)
         }}
       ></input>
-      <Button disabled={!inputValue ? true : false} variant="add"></Button>
+      <IconButton
+        className={styles.iconButton}
+        disabled={!inputValue ? true : false}
+        variant="add"
+      ></IconButton>
     </form>
   )
 }

@@ -1,16 +1,10 @@
 .button {
   cursor: pointer;
 
-  display: inline;
-  position: relative;
-  top: 17.5px;
-  right: 60px;
-
   padding: 0;
 
   background: transparent;
   border: none;
-  color: var(--primery-black);
 }
 
 .icon {

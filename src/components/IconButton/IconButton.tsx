@@ -1,14 +1,14 @@
 import { FC, HTMLAttributes } from 'react'
 import { GoCircle, GoPlusCircle, GoCheckCircle } from 'react-icons/go'
 
-import styles from './Button.module.css'
+import styles from './IconButton.module.css'
 
 interface IButton extends HTMLAttributes<HTMLButtonElement> {
-  variant: 'none' | 'add' | 'complite'
+  variant: 'none' | 'add' | 'complited'
   disabled?: boolean
 }
 
-export const Button: FC<IButton> = ({
+export const IconButton: FC<IButton> = ({
   className,
   variant,
   disabled,
@@ -18,11 +18,11 @@ export const Button: FC<IButton> = ({
   const getIcon = (type: string) => {
     switch (variant) {
       case 'none':
-        return <GoCircle className={styles.icon} />
+        return <GoCircle className={`${styles.icon} ${className}`} />
       case 'add':
-        return <GoPlusCircle className={styles.icon} />
-      case 'complite':
-        return <GoCheckCircle className={styles.icon} />
+        return <GoPlusCircle className={`${styles.icon} ${className}`} />
+      case 'complited':
+        return <GoCheckCircle className={`${styles.icon} ${className}`} />
       default:
         return <GoCircle />
     }
