@@ -1,0 +1,26 @@
+.todoWrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: justify;
+  gap: 10px;
+  width: 100%;
+  padding: 5px 20px;
+
+  background: var(--primary-white);
+
+  border: 1px solid var(--primery-gray);
+  border-radius: 3px;
+
+  font-size: 25px;
+  font-weight: 300;
+  color: var(--primery-black);
+}
+
+.iconButton {
+  color: var(--primery-gray);
+}
+
+.iconButton:hover {
+  color: var(--primery-green);
+}
