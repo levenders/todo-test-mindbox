@@ -1,0 +1,21 @@
+.button {
+  cursor: pointer;
+
+  padding: 3px;
+
+  color: var(--primery-black);
+  font-family: 'Jost';
+  font-weight: 300;
+  font-size: 18px;
+
+  background: transparent;
+  border: none;
+  transition: scale 0.2s linear;
+}
+
+.button:hover {
+  border: 1px solid var(--primery-pink);
+  border-radius: 5px;
+
+  scale: 1.1;
+}
