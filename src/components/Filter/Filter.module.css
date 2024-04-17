@@ -1,8 +1,7 @@
 .filterWrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
 
   background-color: var(--primary-white);
   box-shadow: 0px 4px 4px 0px #0000000d;
@@ -10,4 +9,17 @@
   height: 40px;
   padding: 5px;
   margin-bottom: 4px;
+}
+
+.filterButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.leftTodos {
+  font-family: 'Jost';
+  font-weight: 300;
+  font-size: 18px;
 }

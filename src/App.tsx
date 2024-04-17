@@ -14,6 +14,7 @@ function App() {
   const [currentFilter, setCurrentFilter] = useState<TFilter>('all')
 
   const isFilterDisabled = todos.length === 0
+  const getLeftTodos = todos.filter((t) => !t.comlited).length
 
   const addTodo = useCallback(
     (value: string): void => {
@@ -48,11 +49,12 @@ function App() {
       <Form addTodo={addTodo} />
       <Filter
         currentFilter={currentFilter}
+        getLeftTodos={getLeftTodos}
         isFilterDisabled={isFilterDisabled}
         setCurrentFilter={setCurrentFilter}
         clearCompletedTodos={clearCompletedTodos}
       />
-      {!todos.length && <span className="empty">add new todos!</span>}
+      {/* {!todos.length && <span className="empty">add new todos!</span>} */}
       <List todos={filteredTodos} toggleTodo={toogleTodo} />
     </div>
   )
