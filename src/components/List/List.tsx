@@ -1,54 +1,19 @@
-import { FC, HTMLAttributes } from 'react'
+import { FC } from 'react'
 
-import { SortButton } from './components/SortButton/SortButton'
-import { Todo } from './components/Todo/Todo'
+import { Todo } from './components/Todo'
 
-import { TTodo } from 'types/todo.types'
+import { TTodo } from 'types'
 
 import styles from './List.module.css'
 
-interface IProps extends HTMLAttributes<HTMLDivElement> {
+interface IProps {
   todos: TTodo[]
-  toggleTodo: (id: number) => void
-  viewAllTodos: () => void
-  sortActiveTodos: () => void
-  sortCompletedTodos: () => void
-  clearCompletedTodos: () => void
+  toggleTodo: (id: string) => void
 }
 
-export const List: FC<IProps> = ({
-  todos,
-  toggleTodo,
-  viewAllTodos,
-  sortActiveTodos,
-  sortCompletedTodos,
-  clearCompletedTodos,
-  className,
-  ...props
-}) => {
+export const List: FC<IProps> = ({ todos, toggleTodo, ...props }) => {
   return (
-    <div className={`${styles.list} ${className}`} {...props}>
-      <div className={styles.actions}>
-        <SortButton onClick={viewAllTodos} disabled={!todos.length && true}>
-          All
-        </SortButton>
-        <SortButton onClick={sortActiveTodos} disabled={!todos.length && true}>
-          Active
-        </SortButton>
-        <SortButton
-          onClick={sortCompletedTodos}
-          disabled={!todos.length && true}
-        >
-          Completed
-        </SortButton>
-        <SortButton
-          onClick={clearCompletedTodos}
-          disabled={!todos.length && true}
-        >
-          Clear completed
-        </SortButton>
-      </div>
-      {!todos.length && <span className={styles.empty}>add new todos!</span>}
+    <div className={styles.list} {...props}>
       {todos.map((t) => (
         <Todo key={t.id} todo={t} toggleTodo={() => toggleTodo(t.id)} />
       ))}

@@ -24,3 +24,8 @@
 .iconButton:hover {
   color: var(--primery-green);
 }
+
+.comlited {
+  text-decoration: line-through;
+  color: var(--primery-gray);
+}

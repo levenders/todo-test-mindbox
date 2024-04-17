@@ -8,17 +8,3 @@
 
   box-shadow: 0px 4px 4px 0px #0000000d;
 }
-
-.actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  height: 40px;
-  padding: 5px;
-}
-
-.actions .active {
-  border: 1px solid var(--primery-pink);
-  border-radius: 5px;
-}

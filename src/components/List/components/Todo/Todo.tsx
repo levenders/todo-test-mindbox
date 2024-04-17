@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from 'react'
 
-import { IconButton } from 'components/IconButton/IconButton'
+import { IconButton } from 'components/IconButton'
 
 import { TTodo } from 'types/todo.types'
 
@@ -8,7 +8,7 @@ import styles from './Todo.module.css'
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
   todo: TTodo
-  toggleTodo: (id: number) => void
+  toggleTodo: (id: string) => void
 }
 
 export const Todo: FC<IProps> = ({
@@ -22,10 +22,12 @@ export const Todo: FC<IProps> = ({
     <div className={`${styles.todoWrapper} ${className}`} {...props}>
       <IconButton
         className={styles.iconButton}
-        variant={todo.comlited ? 'complited' : 'none'}
+        variant={todo.comlited ? 'completed' : 'none'}
         onClick={() => toggleTodo(todo.id)}
       />
-      <span className={styles.todo}>{todo.value}</span>
+      <div className={`${styles.todo} ${todo.comlited ? styles.comlited : ''}`}>
+        {todo.value}
+      </div>
     </div>
   )
 }

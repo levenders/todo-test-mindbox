@@ -13,9 +13,18 @@
   transition: scale 0.2s linear;
 }
 
-.button:hover {
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
   border: 1px solid var(--primery-pink);
   border-radius: 5px;
 
   scale: 1.1;
+}
+
+.active {
+  border: 1px solid var(--primery-pink);
+  border-radius: 5px;
 }

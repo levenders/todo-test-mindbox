@@ -1,54 +1,59 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-import { Form } from 'components/Form/Form'
-import { List } from 'components/List/List'
+import { Form } from './components/Form/Form'
+import { List } from './components/List'
+import { TFilter, TTodo } from './types'
 
 import './App.css'
-import { TTodo } from 'types/todo.types'
-
-const todosInitial = [
-  { id: 0, value: '123', comlited: false },
-  { id: 1, value: '456', comlited: false },
-  { id: 2, value: '789', comlited: true },
-]
+import { filterTodos, getUUId } from 'helpers'
+import { Filter } from 'components/Filter/Filter'
 
 function App() {
-  const [todos, setTodos] = useState<TTodo[]>(todosInitial)
+  const [todos, setTodos] = useState<TTodo[]>([])
+  const [filteredTodos, setFilteredTodos] = useState<TTodo[]>(todos)
+  const [currentFilter, setCurrentFilter] = useState<TFilter>('all')
 
-  const toogleTodo = (id: number): void => {
-    const filteredTodos = todos.map((t) =>
-      t.id === id ? { ...t, comlited: !t.comlited } : t
-    )
-    setTodos(filteredTodos)
-    console.log(filteredTodos)
-  }
+  const isFilterDisabled = todos.length === 0
 
-  const viewAllTodos = (): void => {}
-  const sortActiveTodos = (): void => {
-    const filteredTodos = todos.filter((t) => !t.comlited)
-    setTodos(filteredTodos)
-  }
-  const sortCompletedTodos = (): void => {
-    const filteredTodos = todos.filter((t) => t.comlited)
-    setTodos(filteredTodos)
-  }
-  const clearCompletedTodos = (): void => {
-    const filteredTodos = todos.filter((t) => !t.comlited)
-    setTodos(filteredTodos)
-  }
+  const addTodo = useCallback(
+    (value: string): void => {
+      const newTodo = { id: getUUId(), value, comlited: false }
+      setTodos([...todos, newTodo])
+    },
+    [todos]
+  )
+
+  const toogleTodo = useCallback(
+    (id: string): void => {
+      const filteredArr = todos.map((t) =>
+        t.id === id ? { ...t, comlited: !t.comlited } : t
+      )
+      setTodos(filteredArr)
+    },
+    [todos]
+  )
+
+  const clearCompletedTodos = useCallback((): void => {
+    const filteredArr = todos.filter((t) => !t.comlited)
+    setTodos(filteredArr)
+  }, [todos])
+
+  useEffect(() => {
+    setFilteredTodos(filterTodos(todos, currentFilter))
+  }, [currentFilter, todos])
 
   return (
     <div className="App">
       <h1 className="title">todos</h1>
-      <Form />
-      <List
-        todos={todos}
-        toggleTodo={toogleTodo}
-        viewAllTodos={viewAllTodos}
-        sortActiveTodos={sortActiveTodos}
-        sortCompletedTodos={sortCompletedTodos}
+      <Form addTodo={addTodo} />
+      <Filter
+        currentFilter={currentFilter}
+        isFilterDisabled={isFilterDisabled}
+        setCurrentFilter={setCurrentFilter}
         clearCompletedTodos={clearCompletedTodos}
       />
+      {!todos.length && <span className="empty">add new todos!</span>}
+      <List todos={filteredTodos} toggleTodo={toogleTodo} />
     </div>
   )
 }
