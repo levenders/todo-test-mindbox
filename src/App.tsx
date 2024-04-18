@@ -41,7 +41,17 @@ function App() {
 
   useEffect(() => {
     setFilteredTodos(filterTodos(todos, currentFilter))
+    localStorage.setItem('todos', JSON.stringify(todos))
+    localStorage.setItem('filter', JSON.stringify(currentFilter))
   }, [currentFilter, todos])
+
+  const storedTodos = localStorage.getItem('todos')
+  const storedFilter = localStorage.getItem('filter')
+
+  useEffect(() => {
+    setTodos(storedTodos ? JSON.parse(storedTodos) : [])
+    setCurrentFilter(storedFilter ? JSON.parse(storedFilter) : 'all')
+  }, [])
 
   return (
     <div className="App">
