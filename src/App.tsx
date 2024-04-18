@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { Form } from './components/Form/Form'
 import { List } from './components/List'
+import { Filter } from './components/Filter/Filter'
+
 import { TFilter, TTodo } from './types'
+import { filterTodos, getUUId } from 'helpers'
 
 import './App.css'
-import { filterTodos, getUUId } from 'helpers'
-import { Filter } from 'components/Filter/Filter'
 
 function App() {
   const [todos, setTodos] = useState<TTodo[]>([])
@@ -64,7 +65,6 @@ function App() {
         setCurrentFilter={setCurrentFilter}
         clearCompletedTodos={clearCompletedTodos}
       />
-      {/* {!todos.length && <span className="empty">add new todos!</span>} */}
       <List todos={filteredTodos} toggleTodo={toogleTodo} />
     </div>
   )
